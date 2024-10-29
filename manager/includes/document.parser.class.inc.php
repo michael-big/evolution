@@ -531,7 +531,7 @@ class DocumentParser
 
     private function recoverySiteCache()
     {
-        $site_cache_dir = MODX_BASE_PATH . $this->getCacheFolder();
+        $site_cache_dir = MODX_BASE_PATH . 'assets/cache/';
         $site_cache_path = $site_cache_dir . 'siteCache.idx.php';
 
         if (is_file($site_cache_path)) {
@@ -809,6 +809,7 @@ class DocumentParser
 
     /**
      * @return string
+     * @deprecated
      */
     public function getCacheFolder()
     {
