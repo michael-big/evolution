@@ -12,4 +12,4 @@
  * @author      Pathologic (https://github.com/pathologic)
  */
 
-return require MODX_BASE_PATH.'assets/snippets/FormLister/snippet.FormLister.php';
+return require MODX_BASE_PATH.'components/pathologic/formlister/snippet.FormLister.php';

@@ -47,25 +47,19 @@
 
 $autoloader = __DIR__ . '/assets/vendor/autoload.php';
 if (file_exists($autoloader) && is_readable($autoloader)) {
-	include_once($autoloader);
-} else {
-	$autoloader = __DIR__ . '/vendor/autoload.php';
-	if (file_exists($autoloader) && is_readable($autoloader)) {
-		include_once($autoloader);
-	}
+    include_once($autoloader);
 }
-
 if(!isset($_SERVER['REQUEST_TIME_FLOAT'])) $_SERVER['REQUEST_TIME_FLOAT'] = microtime(true);
 
 $base_path = str_replace('\\','/',dirname(__FILE__)) . '/';
 if(is_file($base_path . 'assets/cache/siteManager.php'))
     include_once($base_path . 'assets/cache/siteManager.php');
 if(!defined('MGR_DIR') && is_dir("{$base_path}manager"))
-	define('MGR_DIR', 'manager');
+    define('MGR_DIR', 'manager');
 if(is_file($base_path . 'assets/cache/siteHostnames.php'))
     include_once($base_path . 'assets/cache/siteHostnames.php');
 if(!defined('MODX_SITE_HOSTNAMES'))
-	define('MODX_SITE_HOSTNAMES', '');
+    define('MODX_SITE_HOSTNAMES', '');
 
 // get start time
 $mstart = memory_get_usage();
@@ -89,7 +83,7 @@ ob_start();
 
 define('IN_PARSER_MODE', true);
 if ( ! defined('IN_MANAGER_MODE')) {
-	define('IN_MANAGER_MODE', false);
+    define('IN_MANAGER_MODE', false);
 }
 if (!defined('MODX_API_MODE')) {
     define('MODX_API_MODE', false);
@@ -97,25 +91,30 @@ if (!defined('MODX_API_MODE')) {
 
 // get the required includes
 if(!isset($database_user) || $database_user=="") {
-	$rt = @include_once(dirname(__FILE__).'/'.MGR_DIR.'/includes/config.inc.php');
-	// Be sure config.inc.php is there and that it contains some important values
-	if(!$rt || !$database_type || !$database_server || !$database_user || !$dbase) {
-		header("HTTP/1.1 302 Moved Temporarily");
-		header("Location: /install");
-		exit;
-	}
+    $rt = @include_once(dirname(__FILE__).'/'.MGR_DIR.'/includes/config.inc.php');
+    // Be sure config.inc.php is there and that it contains some important values
+    if(!$rt || !$database_type || !$database_server || !$database_user || !$dbase) {
+        header("HTTP/1.1 302 Moved Temporarily");
+        header("Location: /install");
+        exit;
+    }
 }
+
+include_once MODX_MANAGER_PATH . 'src/ComponentsAutoloader.php';
+$componentsAutoloader = new \EvolutionCMS\Manager\ComponentsAutoloader(MODX_BASE_PATH . 'assets/cache/');
+$componentsAutoloader->addPath(MODX_BASE_PATH . 'components/');
+$componentsAutoloader->register();
 
 // start session
 startCMSSession();
 
 // initiate a new document parser
 if (isset($coreClass) && class_exists($coreClass)) {
-	$modx = new $coreClass;
+    $modx = new $coreClass;
 }
 if (!isset($modx) || !($modx instanceof \DocumentParser)) {
-	include_once(MODX_MANAGER_PATH.'includes/document.parser.class.inc.php');
-	$modx = DocumentParser::getInstance();
+    include_once(MODX_MANAGER_PATH.'includes/document.parser.class.inc.php');
+    $modx = DocumentParser::getInstance();
 }
 
 // set some parser options

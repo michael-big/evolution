@@ -1,9 +1,9 @@
 //<?php
 /**
  * userHelper
- * 
+ *
  * addition to FormLister
- * 
+ *
  * @category    plugin
  * @version     1.21.1
  * @internal    @properties &model=Model;text; &logoutKey=Request key;text;logout &cookieName=Cookie Name;text;WebLoginPE &cookieLifetime=Cookie Lifetime, seconds;text;157680000 &maxFails=Max failed logins;text;3 &blockTime=Block for, seconds;text;3600 &trackWebUserActivity=Track web user activity;list;No,Yes;No
@@ -12,4 +12,4 @@
  * @internal    @disabled 1
 **/
 
-require MODX_BASE_PATH.'assets/snippets/FormLister/plugin.userHelper.php';
+require MODX_BASE_PATH.'componentes/pathologic/formlister/plugin.userHelper.php';

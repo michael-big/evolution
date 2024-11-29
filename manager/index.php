@@ -51,13 +51,13 @@
 $autoloader = realpath(__DIR__ . '/../assets/vendor/autoload.php');
 if (file_exists($autoloader) && is_readable($autoloader)) {
 	include_once($autoloader);
-} else {
-	$autoloader = realpath(__DIR__ . '/../vendor/autoload.php');
-	if (file_exists($autoloader) && is_readable($autoloader)) {
-		include_once($autoloader);
-	}
 }
-
+$autoloader = realpath(__DIR__ . '/vendor/autoload.php');
+if (file_exists($autoloader) && is_readable($autoloader)) {
+	include_once($autoloader);
+} else {
+    throw new RuntimeException('Unable to load manager autoloader.');
+}
 // get start time
 $mtime = microtime(); $mtime = explode(" ",$mtime); $mtime = $mtime[1] + $mtime[0]; $tstart = $mtime;
 $mstart = memory_get_usage();
@@ -144,9 +144,12 @@ if (!file_exists($config_filename)) {
 	echo "Please run the EVO <a href='../install'>install utility</a>";
 	exit;
 }
-
 // include the database configuration file
 include_once $config_filename;
+
+$componentsAutoloader = new \EvolutionCMS\Manager\ComponentsAutoloader(MODX_BASE_PATH . 'assets/cache/');
+$componentsAutoloader->addPath(MODX_BASE_PATH . 'components/');
+$componentsAutoloader->register();
 
 // initiate the content manager class
 if (isset($coreClass) && class_exists($coreClass)) {

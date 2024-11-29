@@ -12,4 +12,4 @@
  * @internal    @installset base, sample
  */
 
-return require MODX_BASE_PATH.'assets/snippets/DocLister/snippet.DLSitemap.php';
+return require MODX_BASE_PATH.'components/agelxnash/doclister/snippet.DLSitemap.php';

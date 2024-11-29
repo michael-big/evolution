@@ -13,4 +13,4 @@
  * @author      Bumkaka
  */
 
-return require MODX_BASE_PATH.'assets/snippets/phpthumb/snippet.phpthumb.php';
+return require MODX_BASE_PATH.'components/evolutioncms/phpthumb/snippet.phpthumb.php';
