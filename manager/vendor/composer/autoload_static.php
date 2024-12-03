@@ -39,7 +39,7 @@ class ComposerStaticInitcc78f1cd49192ee45a38fe42b59c2fc0
         ),
         'EvolutionCMS\\Manager\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/../src',
+            0 => __DIR__ . '/../..' . '/src',
         ),
         'Composer\\Pcre\\' => 
         array (
