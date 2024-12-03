@@ -1,0 +1,10 @@
+{
+    "require": {
+        "composer/class-map-generator": "^1.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "EvolutionCMS\\Manager\\": "src/"
+        }
+    }
+}
