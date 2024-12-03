@@ -72,7 +72,7 @@ class ComponentsAutoloader
     public function build()
     {
         $classmap = var_export($this->getClassmap(), true);
-        file_put_contents($this->path . 'classmap.php', "<php\nreturn $classmap;\n");
+        file_put_contents($this->path . 'classmap.php', "<?php\nreturn $classmap;\n");
     }
 
     /**
